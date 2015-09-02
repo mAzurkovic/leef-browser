@@ -1,4 +1,5 @@
 import sys
+from Tkinter import *
 
 def __init__():
   generate_win()
