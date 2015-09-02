@@ -18,6 +18,10 @@ def generate_win():
   root = Tk()
   root.title('Leef Browser')
 
+  root.minsize(1024, 748)
+  address_bar = Entry()
+  address_bar.pack()
+  
   root.mainloop()
 
 # Initialize main.py => run program
