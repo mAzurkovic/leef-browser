@@ -9,6 +9,7 @@
 import sys
 from Tkinter import *
 import webkit, gtk
+import window
 
 def __init__():
 #  __window__(gtk.Window())
@@ -49,50 +50,6 @@ def check_search(widget):
     goto(url_ans)
   else:
     www.open('http://google.com/#q=' + url_ans)
-
-
-def new_window(widget):
-  print('Window created!') 
-
-  www = webkit.WebView()
-  scroll_bar = gtk.ScrolledWindow()
-  scroll_bar.add(www)
-
-  window = gtk.Window()
-  window.set_title("Leef Browser")
-  window.connect('destroy', lambda w: gtk.main_quit())
-  window.set_screen
-  window.set_size_request(1368, 768)
-  window.set_position(gtk.WIN_POS_CENTER)
-
-  container = gtk.VBox()
-  window.add(container)
-
-  top_div = gtk.HBox()
-  container.pack_start(top_div, False)
-
-  address_bar = gtk.Entry()
-  top_div.pack_start(address_bar)
-
-
-  goto_button = gtk.Button('go!')
-  goto_button.connect('clicked', goto)
-  # Search button
-  search_button = gtk.Button('Search')
-  search_button.connect('clicked', check_search)
-  # New window button
-  new_window_button = gtk.Button('+')
-  new_window_button.connect('clicked', new_window)
-
-  top_div.pack_start(goto_button)
-  top_div.pack_start(search_button)
-  top_div.pack_start(new_window_button)
-
-  container.pack_start(scroll_bar)
-
-  window.show_all()
-  gtk.main()
-
 
 # Below the window is defined
 www = webkit.WebView()
