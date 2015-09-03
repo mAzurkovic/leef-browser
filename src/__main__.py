@@ -62,7 +62,7 @@ container = gtk.VBox()
 window.add(container)
 
 top_div = gtk.HBox()
-container.pack_start(top_div)
+container.pack_start(top_div, False)
 
 address_bar = gtk.Entry()
 top_div.pack_start(address_bar)
