@@ -51,15 +51,37 @@ def generate_win():
 def goto(widget):
   default_start_page = 'http://www.google.com'
   url_address = address_bar.get_text()
-  www.open(default_start_page)
+ 
+  if len(url_address) == 0:
+    www.open(default_start_page)
   
   http = 'http://' 
   # auto add 'http://' to start of URL
   if url_address[0] != 'h':
-    # Add 'http://'
-    www.open('http://' + url_address)
+    if url_address[1:6] != 'ttp://':
+      if url_address.find('.com'):
+        # Add 'http://'
+        www.open('http://' + url_address)
+      else:
+        www.open('http://www.google.com/#q=' + url_address)
+
   else:
     www.open(url_address)
+
+ 
+
+# Search capabilites - if user does not enter proper URL, just enters a string, then search Google
+def check_search(widget):
+  # The string the user typed in ADDRESS BAR
+  url_ans = address_bar.get_text()
+  url_traits = ['http://', '.com', '.ca', '.net']  
+  
+  if url_ans.find(url_traits):
+    goto(url_ans)
+  else:
+    www.open('http://google.com/#q=' + url_ans)
+
+
 
 # Below the window is defined
 www = webkit.WebView()
@@ -92,6 +114,7 @@ window.show_all()
 gtk.main()
 
 
+
 def __window__(self):
   self.set_title("Leef Browser")
   self.set_size_request(1368, 768)
@@ -113,6 +136,11 @@ def __window__(self):
 
   goto_button = gtk.Button('go!')
   goto_button.connect('clicked', goto)
+
+  #search_button = gtk.Button('Search')
+  goto_button.connect('clicked', check_search) 
+  
+  #top_div.pack_start(search_button)
   top_div.pack_start(goto_button)
 
   container.pack_start(scroll_bar)
