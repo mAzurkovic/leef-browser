@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #===================================#
 # Author: Mattias A. Zurkovic       #
 # ----------------------------------#
@@ -10,7 +11,7 @@ from Tkinter import *
 import webkit, gtk
 
 def __init__():
-  # generate_win()
+#  __window__(gtk.Window())
   print "Testin'"
 
 
@@ -45,19 +46,32 @@ def generate_win():
 
   root.mainloop()
 
+
+# Go to the URL
+def goto(widget):
+  default_start_page = 'http://www.google.com'
+  url_address = address_bar.get_text()
+  www.open(default_start_page)
+  
+  http = 'http://' 
+  # auto add 'http://' to start of URL
+  if url_address[0] != 'h':
+    # Add 'http://'
+    www.open('http://' + url_address)
+  else:
+    www.open(url_address)
+
+# Below the window is defined
 www = webkit.WebView()
 scroll_bar = gtk.ScrolledWindow()
 scroll_bar.add(www)
 
-# Go to the URL
-def goto_page(widget):
-  url_address = address_bar.get_text()
-  www.open(url_address)
-
-
 window = gtk.Window()
 window.set_title("Leef Browser")
+window.connect('destroy', lambda w: gtk.main_quit())
 window.set_screen
+window.set_size_request(1368, 768)
+window.set_position(gtk.WIN_POS_CENTER)
 
 container = gtk.VBox()
 window.add(container)
@@ -69,13 +83,43 @@ address_bar = gtk.Entry()
 top_div.pack_start(address_bar)
 
 goto_button = gtk.Button('go!')
-goto_button.connect('clicked', goto_page)
+goto_button.connect('clicked', goto)
 top_div.pack_start(goto_button)
 
 container.pack_start(scroll_bar)
 
 window.show_all()
 gtk.main()
+
+
+def __window__(self):
+  self.set_title("Leef Browser")
+  self.set_size_request(1368, 768)
+  self.set_position(gtk.WIN_POS_CENTER)
+  self.connect("destroy", gtk.main_quit)
+
+  www = webkit.WebView()
+  scroll_bar = gtk.ScrolledWindow()
+  scroll_bar.add(www)
+
+  container = gtk.VBox()
+  self.add(container) 
+
+  top_div = gtk.HBox()
+  container.pack_start(top_div, False)
+
+  address_bar = gtk.Entry()
+  top_div.pack_start(address_bar)
+
+  goto_button = gtk.Button('go!')
+  goto_button.connect('clicked', goto)
+  top_div.pack_start(goto_button)
+
+  container.pack_start(scroll_bar)
+
+ # self.show_all()
+ # getk.main()
+
 
 
 
