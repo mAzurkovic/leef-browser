@@ -7,10 +7,12 @@
 
 import sys
 from Tkinter import *
+import webkit, gtk
 
 def __init__():
   generate_win()
 
+global address_bar
 
 # Function for creating/initializing the GUI for the browser
 def generate_win():
@@ -24,6 +26,10 @@ def generate_win():
   address_ans = StringVar(None)
   address_bar = Entry(textvariable = address_ans, width = 50)
   address_bar.pack()
+
+  # GO Button
+  goto_button = Button(text="go!", command=goto)
+  goto_button.pack()  
 
   # Top menubar/navigation bar 
   menubar = Menu(root)
@@ -39,9 +45,11 @@ def generate_win():
 
   root.mainloop()
 
-
+# Go to the URL
 def goto():  
-  print "Hello"
+  url_address = address_bar.get_text()
+  web.open(url_address)
+
 
 
 # Initialize main.py => run program
