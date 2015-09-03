@@ -57,6 +57,7 @@ def goto_page(widget):
 
 window = gtk.Window()
 window.set_title("Leef Browser")
+window.set_screen
 
 container = gtk.VBox()
 window.add(container)
