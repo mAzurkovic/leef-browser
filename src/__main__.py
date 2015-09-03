@@ -10,9 +10,9 @@ from Tkinter import *
 import webkit, gtk
 
 def __init__():
-  generate_win()
+  # generate_win()
+  print "Testin'"
 
-global address_bar
 
 # Function for creating/initializing the GUI for the browser
 def generate_win():
@@ -45,10 +45,36 @@ def generate_win():
 
   root.mainloop()
 
+www = webkit.WebView()
+scroll_bar = gtk.ScrolledWindow()
+scroll_bar.add(www)
+
 # Go to the URL
-def goto():  
+def goto_page(widget):
   url_address = address_bar.get_text()
-  web.open(url_address)
+  www.open(url_address)
+
+
+window = gtk.Window()
+window.set_title("Leef Browser")
+
+container = gtk.VBox()
+window.add(container)
+
+top_div = gtk.HBox()
+container.pack_start(top_div)
+
+address_bar = gtk.Entry()
+top_div.pack_start(address_bar)
+
+goto_button = gtk.Button('go!')
+goto_button.connect('clicked', goto_page)
+top_div.pack_start(goto_button)
+
+container.pack_start(scroll_bar)
+
+window.show_all()
+gtk.main()
 
 
 
