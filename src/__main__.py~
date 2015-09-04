@@ -18,7 +18,6 @@ class LeefMain(gtk.Window):
     gtk.Window.__init__(self)
     self.set_border_width(10)
 
-    session_url =[]    
 
     # Go to the URL
     def goto(widget):
@@ -44,15 +43,15 @@ class LeefMain(gtk.Window):
         session_url.append(url_address) 
         print(session_url)
 
-    # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
+# Search capabilites - if user does not enter proper URL, just enters a string, then search Google
     def check_search(widget):
-      # The string the user typed in ADDRESS BAR
+  # The string the user typed in ADDRESS BAR
       url_ans = address_bar.get_text()
       url_traits = ['http://', '.com', '.ca', '.net']  
   
       www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + url_ans)
 
-    # Function for going to prev. page
+# Function for going to prev. page
     def goto_back(widget):
       print "Leef Browser: @BACK"
 
@@ -121,7 +120,11 @@ gtk.main()
 
 
 
-'''
+
+
+
+
+
 
 # session_url stores all the URLs the userhas been to in this current session
 session_url =[]
@@ -134,7 +137,7 @@ def __2init__():
 
 # Go to the URL
 def goto(widget):
-#  default_start_page = 'http://www.google.com'
+  default_start_page = 'http://www.google.com'
   url_address = address_bar.get_text()
  
   if len(url_address) == 0:
@@ -159,8 +162,6 @@ def goto(widget):
 # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
 def check_search(widget):
   # The string the user typed in ADDRESS BAR
-
-
   url_ans = address_bar.get_text()
   url_traits = ['http://', '.com', '.ca', '.net']  
   
@@ -170,10 +171,11 @@ def check_search(widget):
 def goto_back(widget):
   print "Leef Browser: @BACK"
 
+
 def new_window(widget, data = None):
   print('Window created!') 
 
-  
+  ''' 
   www = webkit.WebView()
   scroll_bar = gtk.ScrolledWindow()
   scroll_bar.add(www)
@@ -212,8 +214,9 @@ def new_window(widget, data = None):
 
   window.show_all()
   gtk.main()
- #----------------------------------------
-
+  '''
+#-----------------------------------------
+'''
 search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
 
 # Below the window is defined

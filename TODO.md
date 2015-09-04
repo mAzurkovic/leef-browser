@@ -5,6 +5,7 @@ This file contains a list of what this need to be done for the project (improvme
 * When user enters URL, go to site :heavy_check_mark:
 * Auto-add 'http://' to user string :heavy_check_mark:
 * Set a default start page (i.e. Google)
+* Allow Google search in main address/URL bar :heavy_check_mark:
 * When user @ site and presses link, change url bar to display corresponding link
 * Create 'back' option (go to previous page)
 * Bind <Return> to goto()
