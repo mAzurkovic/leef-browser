@@ -18,7 +18,7 @@ session_url =[]
 def __init__():
 #  __window__(gtk.Window())
   print('Welcome to Leef. An open-source and light-weight browser for the modern web.')
-  print('@browser-end')
+  print('Leef Browser: @END')
 
 
 # Go to the URL
@@ -51,10 +51,11 @@ def check_search(widget):
   url_ans = address_bar.get_text()
   url_traits = ['http://', '.com', '.ca', '.net']  
   
-  if url_ans.find(url_traits):
-    goto(url_ans)
-  else:
-    www.open('http://google.com/#q=' + url_ans)
+  www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + url_ans)
+
+# Function for going to prev. page
+def goto_back(widget):
+  print "Leef Browser: @BACK"
 
 
 def new_window(widget):
@@ -101,6 +102,8 @@ def new_window(widget):
 
 #-----------------------------------------
 
+search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
+
 # Below the window is defined
 www = webkit.WebView()
 scroll_bar = gtk.ScrolledWindow()
@@ -121,6 +124,7 @@ container.pack_start(top_div, False)
 
 # Back and forward buttons
 back_button = gtk.Button("<")
+back_button.connect("clicked", goto_back)
 for_button = gtk.Button(">")
 top_div.pack_start(back_button)
 top_div.pack_start(for_button)
@@ -132,6 +136,13 @@ top_div.pack_start(address_bar)
 
 goto_button = gtk.Button('go!')
 goto_button.connect('clicked', goto)
+top_div.pack_start(goto_button)
+
+# Search bar
+#search_bar = gtk.Entry()
+#search_bar.set_text(search_engine_names[0] + " Search")
+#top_div.pack_start(search_bar)
+
 # Search button
 search_button = gtk.Button('Search')
 search_button.connect('clicked', check_search)
@@ -139,7 +150,6 @@ search_button.connect('clicked', check_search)
 new_window_button = gtk.Button('+')
 new_window_button.connect('clicked', new_window)
 
-top_div.pack_start(goto_button)
 top_div.pack_start(search_button)
 top_div.pack_start(new_window_button)
 
