@@ -36,6 +36,7 @@ def goto(widget):
         # Add 'http://'
         www.open('http://' + url_address)
         session_url.append('http://' + url_address)
+        print(session_url)
       else:
         www.open('http://www.google.com/#q=' + url_address)
          
