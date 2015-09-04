@@ -99,6 +99,7 @@ def new_window(widget):
   window.show_all()
   gtk.main()
 
+#-----------------------------------------
 
 # Below the window is defined
 www = webkit.WebView()
@@ -118,9 +119,16 @@ window.add(container)
 top_div = gtk.HBox()
 container.pack_start(top_div, False)
 
-address_bar = gtk.Entry()
-top_div.pack_start(address_bar)
+# Back and forward buttons
+back_button = gtk.Button("<")
+for_button = gtk.Button(">")
+top_div.pack_start(back_button)
+top_div.pack_start(for_button)
 
+# Address/URL bar
+address_bar = gtk.Entry()
+address_bar.set_text("Enter the website URL")
+top_div.pack_start(address_bar)
 
 goto_button = gtk.Button('go!')
 goto_button.connect('clicked', goto)
