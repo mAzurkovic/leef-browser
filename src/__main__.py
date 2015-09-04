@@ -10,6 +10,11 @@ import sys
 from Tkinter import *
 import webkit, gtk
 
+#===================================#
+
+# session_url stores all the URLs the user has been to in this current session
+session_url =[]
+
 def __init__():
 #  __window__(gtk.Window())
   print('Welcome to Leef. An open-source and light-weight browser for the modern web.')
@@ -24,20 +29,20 @@ def goto(widget):
   if len(url_address) == 0:
     www.open(default_start_page)
   
-  http = 'http://' 
   # auto add 'http://' to start of URL
   if url_address[0] != 'h':
     if url_address[1:6] != 'ttp://':
       if url_address.find('.com'):
         # Add 'http://'
         www.open('http://' + url_address)
+        session_url.append('http://' + url_address)
       else:
         www.open('http://www.google.com/#q=' + url_address)
-
+         
   else:
     www.open(url_address)
-
- 
+    session_url.append(url_address) 
+    print(session_url)
 
 # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
 def check_search(widget):
