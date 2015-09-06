@@ -18,7 +18,8 @@ class LeefMain(gtk.Window):
     gtk.Window.__init__(self)
     self.set_border_width(10)
     self.set_size_request(1368, 768)    
-
+    
+    # This array stores the URLs/Websites the user has gone in the currect Browser session
     session_url =[]    
 
     # Go to the URL
@@ -56,6 +57,16 @@ class LeefMain(gtk.Window):
     # Function for going to prev. page
     def goto_back(widget):
       print "Leef Browser: @BACK"
+  
+      www.open(session_url[0])
+      for x in session_url:
+	if session_url.index(x) + 2 > len(session_url):
+          session_url.index(x) - 1
+          www.open(x)
+      
+    def bookmark_page(widget):
+      print("Leef Browser: @BOOKMARK")
+
 
     def new_window(widget):
       window = LeefMain()
@@ -80,9 +91,10 @@ class LeefMain(gtk.Window):
     # Back and forward buttons
     back_button = gtk.Button("<")
     back_button.connect("clicked", goto_back)
-    for_button = gtk.Button(">")
+    fav_button = gtk.Button("Bookmark")
+    fav_button.connect('clicked', bookmark_page)
     top_div.pack_start(back_button)
-    top_div.pack_start(for_button)
+    top_div.pack_start(fav_button)
 
     # Address/URL bar
     address_bar = gtk.Entry()
