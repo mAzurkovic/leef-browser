@@ -59,6 +59,7 @@ class LeefMain(gtk.Window):
       print "Leef Browser: @BACK"
   
       www.open(session_url[0])
+
       for x in session_url:
 	if session_url.index(x) + 2 > len(session_url):
           session_url.index(x) - 1
