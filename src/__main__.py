@@ -33,18 +33,19 @@ class LeefMain(gtk.Window):
       # auto add 'http://' to start of URL
       if url_address[0] != 'h':
         if url_address[1:6] != 'ttp://':
-          if url_address.find('.com'):
-            # Add 'http://'
-            www.open('http://' + url_address)
-            session_url.append('http://' + url_address)
-            print(session_url)
-          else:
-            www.open('http://www.google.com/#q=' + url_address)
-         
-      else:
+          # Add 'http://'
+          www.open('http://' + url_address)
+          session_url.append('http://' + url_address)
+          print(session_url)
+      
+      elif url_address[0:6] == "http://":
         www.open(url_address)
         session_url.append(url_address) 
         print(session_url)
+
+      elif url_address[-1] != "m" and url_address [0:6] != "http://":
+        www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + url_address)
+
 
     # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
     def check_search(widget):
@@ -106,11 +107,6 @@ class LeefMain(gtk.Window):
     goto_button = gtk.Button('go!')
     goto_button.connect('clicked', goto)
     top_div.pack_start(goto_button)
-
-# Search bar
-#search_bar = gtk.Entry()
-#search_bar.set_text(search_engine_names[0] + " Search")
-#top_div.pack_start(search_bar)
 
     # Search button
     search_button = gtk.Button('Search')
