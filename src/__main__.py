@@ -95,29 +95,32 @@ class LeefMain(gtk.Window):
     back_button = gtk.Button("<")
     back_button.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", goto_back)
-    fav_button = gtk.Button("Bookmark")
-    fav_button.connect('clicked', bookmark_page)
     top_div.pack_start(back_button, expand  = False)
-    top_div.pack_start(fav_button)
 
     # Address/URL bar
     address_bar = gtk.Entry()
     address_bar.set_text("Enter the website URL")
     top_div.pack_start(address_bar)
 
-    goto_button = gtk.Button('go!')
+    goto_button = gtk.Button('Go!')
     goto_button.connect('clicked', goto)
-    top_div.pack_start(goto_button)
+    top_div.pack_start(goto_button, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
     search_button.connect('clicked', check_search)
+    
+    # Bookmark
+    fav_button = gtk.Button("Bookmark")
+    fav_button.connect('clicked', bookmark_page)
+
     # New window button
     new_window_button = gtk.Button('+')
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
-    top_div.pack_start(search_button)
+    top_div.pack_start(search_button, expand = False, fill = False)
+    top_div.pack_start(fav_button, expand = False, fill = False)
     top_div.pack_start(new_window_button, fill = False, expand = False)
 
     container.pack_start(scroll_bar)
