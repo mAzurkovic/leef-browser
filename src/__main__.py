@@ -93,10 +93,11 @@ class LeefMain(gtk.Window):
 
     # Back and forward buttons
     back_button = gtk.Button("<")
+    back_button.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", goto_back)
     fav_button = gtk.Button("Bookmark")
     fav_button.connect('clicked', bookmark_page)
-    top_div.pack_start(back_button)
+    top_div.pack_start(back_button, expand  = False)
     top_div.pack_start(fav_button)
 
     # Address/URL bar
@@ -113,10 +114,11 @@ class LeefMain(gtk.Window):
     search_button.connect('clicked', check_search)
     # New window button
     new_window_button = gtk.Button('+')
+    new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
     top_div.pack_start(search_button)
-    top_div.pack_start(new_window_button)
+    top_div.pack_start(new_window_button, fill = False, expand = False)
 
     container.pack_start(scroll_bar)
   
