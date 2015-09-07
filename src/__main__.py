@@ -60,11 +60,8 @@ class LeefMain(gtk.Window):
       print "Leef Browser: @BACK"
   
       www.open(session_url[0])
+      
 
-      for x in session_url:
-	if session_url.index(x) + 2 > len(session_url):
-          session_url.index(x) - 1
-          www.open(x)
       
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
@@ -93,29 +90,35 @@ class LeefMain(gtk.Window):
 
     # Back and forward buttons
     back_button = gtk.Button("<")
+    back_button.set_tooltip_text("Previous page")
     back_button.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", goto_back)
     top_div.pack_start(back_button, expand  = False)
 
     # Address/URL bar
     address_bar = gtk.Entry()
-    address_bar.set_text("Enter the website URL")
+    address_bar.set_tooltip_text("Enter the website URL")
     top_div.pack_start(address_bar)
 
+    # Goto Button
     goto_button = gtk.Button('Go!')
+    goto_button.set_tooltip_text("Go to site")
     goto_button.connect('clicked', goto)
     top_div.pack_start(goto_button, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
+    search_button.set_tooltip_text("Google search")
     search_button.connect('clicked', check_search)
     
     # Bookmark
     fav_button = gtk.Button("Bookmark")
+    fav_button.set_tooltip_text("Bookmark page")
     fav_button.connect('clicked', bookmark_page)
 
     # New window button
     new_window_button = gtk.Button('+')
+    new_window_button.set_tooltip_text("New Leef window")
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
@@ -128,7 +131,7 @@ class LeefMain(gtk.Window):
 
 
 window = LeefMain()
-window.set_title("Leef Browser")
+window.set_title("Browser")
 window.connect("delete-event", gtk.main_quit)
 window.show_all()
 gtk.main()
