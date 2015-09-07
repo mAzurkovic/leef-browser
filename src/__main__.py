@@ -71,6 +71,7 @@ class LeefMain(gtk.Window):
 
     def new_window(widget):
       window = LeefMain()
+      window.set_title("Leef Browser")
       window.connect("delete-event", gtk.main_quit)
       window.show_all()
       gtk.main()
@@ -126,6 +127,7 @@ class LeefMain(gtk.Window):
 
 
 window = LeefMain()
+window.set_title("Leef Browser")
 window.connect("delete-event", gtk.main_quit)
 window.show_all()
 gtk.main()
