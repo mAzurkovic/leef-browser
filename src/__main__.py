@@ -21,6 +21,8 @@ class LeefMain(gtk.Window):
     
     # This array stores the URLs/Websites the user has gone in the currect Browser session
     session_url =[]    
+    # Stores all the bookmarks the users has
+    bookmarks = []
 
     # Go to the URL
     def goto(widget):
@@ -65,7 +67,11 @@ class LeefMain(gtk.Window):
       
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
-
+      bookmarked_url = address_bar.get_text()
+      print("Successfully bookmarked " + bookmarked_url)
+      bookmarks.append(bookmarked_url)
+      print(bookmarks)
+      
 
     def new_window(widget):
       window = LeefMain()
