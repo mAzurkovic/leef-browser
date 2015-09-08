@@ -16,7 +16,7 @@ class LeefMain(gtk.Window):
 
   def __init__(self):
     gtk.Window.__init__(self)
-    self.set_border_width(10)
+    self.set_border_width(5)
     self.set_size_request(1368, 768)    
     
     # This array stores the URLs/Websites the user has gone in the currect Browser session
@@ -87,7 +87,7 @@ class LeefMain(gtk.Window):
 
     top_div = gtk.HBox()
     container.pack_start(top_div, False)
-
+    
     # Back and forward buttons
     back_button = gtk.Button("<")
     back_button.set_tooltip_text("Previous page")
