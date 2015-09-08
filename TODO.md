@@ -7,6 +7,7 @@ This file contains a list of what this need to be done for the project (improvme
 * Set a default start page (i.e. Google)
 * Allow Google search in main address/URL bar :heavy_check_mark:
 * When user @ site and presses link, change url bar to display corresponding link
+* Add dropdown menu in address bar that displays lastest URLs
 * Create 'back' option (go to previous page)
 * Bind <Return> (Enter) to goto()
 * Allow user to pick default search engine
