@@ -8,7 +8,8 @@ This file contains a list of what this need to be done for the project (improvme
 * Allow Google search in main address/URL bar :heavy_check_mark:
 * When user @ site and presses link, change url bar to display corresponding link
 * Create 'back' option (go to previous page)
-* Bind <Return> to goto()
+* Bind <Return> (Enter) to goto()
+* Allow user to pick default search engine
 * Add visited site to an index (this will be used for history, prev. pages)
 * Add search bar to right of main URL address bar
 * Support video playing (Youtube, Vimeo, etc.)
