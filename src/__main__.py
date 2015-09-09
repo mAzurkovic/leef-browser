@@ -101,7 +101,18 @@ class LeefMain(gtk.Window):
     back_button.connect("clicked", goto_back)
     top_div.pack_start(back_button, expand  = False)
 
-    # Address/URL bar
+    '''
+ 
+    # Items in combobox/dropdown address bar - all recent session URLs
+    recent_address_store = gtk.ListStore(str)
+    for url in session_url:
+      recent_address_stroe.append([url])
+
+    #address_bar = gtk.combo_box_entry_new_text()
+  
+    '''
+
+
     address_bar = gtk.Entry()
     address_bar.set_tooltip_text("Enter the website URL")
     top_div.pack_start(address_bar)
@@ -134,7 +145,6 @@ class LeefMain(gtk.Window):
 
     container.pack_start(scroll_bar)
   
-
 
 window = LeefMain()
 window.set_title("Browser")
