@@ -102,8 +102,6 @@ class LeefMain(gtk.Window):
     top_div.pack_start(back_button, expand  = False)
 
     '''
- 
-    # Items in combobox/dropdown address bar - all recent session URLs
     recent_address_store = gtk.ListStore(str)
     for url in session_url:
       recent_address_stroe.append([url])
