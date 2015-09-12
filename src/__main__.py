@@ -29,9 +29,6 @@ class LeefMain(gtk.Window):
       default_start_page = 'http://www.google.com'
       url_address = address_bar.get_text()
  
-      if len(url_address) == 0:
-        www.open(default_start_page)
-  
       # auto add 'http://' to start of URL
       if url_address[0] != 'h':
         if url_address[1:6] != 'ttp://':
@@ -40,13 +37,10 @@ class LeefMain(gtk.Window):
           session_url.append('http://' + url_address)
           print(session_url)
       
-      elif url_address[0:6] == "http://":
+      else:
         www.open(url_address)
         session_url.append(url_address) 
         print(session_url)
-
-      elif url_address[-1] != "m" and url_address [0:6] != "http://":
-        www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + url_address)
 
 
     # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
