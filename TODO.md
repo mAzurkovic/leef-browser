@@ -16,7 +16,7 @@ This file contains a list of what this need to be done for the project (improvme
 * Add search bar to right of main URL address bar
 * Support video playing (Youtube, Vimeo, etc.)
 * New tab option
-* New window option
+* New window option :heavy_check_mark:
 * Favorite option
 * Instpect page (will be using urllib2 for this feature)
 * For now that is all...
