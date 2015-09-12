@@ -104,7 +104,7 @@ class LeefMain(gtk.Window):
   
     '''
 
-
+    # Address Bar
     address_bar = gtk.Entry()
     address_bar.connect('activate', goto)
     address_bar.set_tooltip_text("Enter the website URL")
@@ -115,6 +115,11 @@ class LeefMain(gtk.Window):
     goto_button.set_tooltip_text("Go to site")
     goto_button.connect('clicked', goto)
     top_div.pack_start(goto_button, expand = False, fill = False)
+
+    # Search Bar
+    search_bar = gtk.Entry()
+    search_bar.connect("activate", check_search)
+    top_div.pack_start(search_bar, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
