@@ -10,7 +10,7 @@ This file contains a list of what this need to be done for the project (improvme
 * When user @ site and presses link, change url bar to display corresponding link
 * Add dropdown menu in address bar that displays lastest URLs
 * Create 'back' option (go to previous page)
-* Bind <Return> (Enter) to goto()
+* Bind <Return> (Enter) to goto() :heavy_check_mark:
 * Allow user to pick default search engine
 * Add visited site to an index (this will be used for history, prev. pages)
 * Add search bar to right of main URL address bar
