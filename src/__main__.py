@@ -106,6 +106,7 @@ class LeefMain(gtk.Window):
 
 
     address_bar = gtk.Entry()
+    address_bar.connect('activate', goto)
     address_bar.set_tooltip_text("Enter the website URL")
     top_div.pack_start(address_bar)
 
