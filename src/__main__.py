@@ -119,13 +119,21 @@ class LeefMain(gtk.Window):
     # Search Bar
     search_bar = gtk.Entry()
     search_bar.connect("activate", check_search)
+    search_bar.set_tooltip_text("Search the net")
+    search_bar.set_size_request(width = 240, height = 33)
     top_div.pack_start(search_bar, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
     search_button.set_tooltip_text("Google search")
     search_button.connect('clicked', check_search)
-    
+    top_div.pack_start(search_button, expand = False, fill = False)  
+ 
+    # Divider
+    divider = gtk.Label()
+    divider.set_text(" | ")
+    top_div.pack_start(divider, expand = False, fill = False)
+ 
     # Bookmark
     fav_button = gtk.Button("Bookmark")
     fav_button.set_tooltip_text("Bookmark page")
@@ -137,7 +145,6 @@ class LeefMain(gtk.Window):
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
-    top_div.pack_start(search_button, expand = False, fill = False)
     top_div.pack_start(fav_button, expand = False, fill = False)
     top_div.pack_start(new_window_button, fill = False, expand = False)
 
