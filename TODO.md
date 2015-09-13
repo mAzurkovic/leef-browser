@@ -12,7 +12,7 @@ This file contains a list of what this need to be done for the project (improvme
 * Create 'back' option (go to previous page)
 * Bind <Return> (Enter) to goto() :heavy_check_mark:
 * Allow user to pick default search engine
-* Add visited site to an index (this will be used for history, prev. pages)
+* Add visited site to an index (this will be used for history, prev. pages) :heavy_check_mark:
 * Add search bar to right of main URL address bar
 * Support video playing (Youtube, Vimeo, etc.)
 * New tab option
