@@ -95,15 +95,6 @@ class LeefMain(gtk.Window):
     back_button.connect("clicked", goto_back)
     top_div.pack_start(back_button, expand  = False)
 
-    '''
-    recent_address_store = gtk.ListStore(str)
-    for url in session_url:
-      recent_address_stroe.append([url])
-
-    #address_bar = gtk.combo_box_entry_new_text()
-  
-    '''
-
     # Address Bar
     address_bar = gtk.Entry()
     address_bar.connect('activate', goto)
@@ -114,25 +105,26 @@ class LeefMain(gtk.Window):
     goto_button = gtk.Button('Go!')
     goto_button.set_tooltip_text("Go to site")
     goto_button.connect('clicked', goto)
-    top_div.pack_start(goto_button, expand = False, fill = False)
+    #top_div.pack_start(goto_button, expand = False, fill = False)
 
     # Search Bar
     search_bar = gtk.Entry()
     search_bar.connect("activate", check_search)
     search_bar.set_tooltip_text("Search the net")
     search_bar.set_size_request(width = 240, height = 33)
+    search_bar.set_text("Search")
     top_div.pack_start(search_bar, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
     search_button.set_tooltip_text("Google search")
     search_button.connect('clicked', check_search)
-    top_div.pack_start(search_button, expand = False, fill = False)  
+    #top_div.pack_start(search_button, expand = False, fill = False)  
  
     # Divider
     divider = gtk.Label()
     divider.set_text(" | ")
-    top_div.pack_start(divider, expand = False, fill = False)
+    #top_div.pack_start(divider, expand = False, fill = False)
  
     # Bookmark
     fav_button = gtk.Button("Bookmark")
