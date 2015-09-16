@@ -54,10 +54,13 @@ class LeefMain(gtk.Window):
     # Function for going to prev. page
     def goto_back(widget):
       print "Leef Browser: @BACK"
-  
-      www.open(session_url[0])
-      
-
+      # URL in Address Bar
+      typed_ans = address_bar.get_text()
+      for i in session_url:
+        if i == typed_ans:
+          pos = session_url.find(i)
+          print(session_url[pos - 1])
+          print("GOOOK")
       
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
