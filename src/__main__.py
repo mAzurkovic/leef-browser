@@ -24,6 +24,17 @@ class LeefMain(gtk.Window):
     # Stores all the bookmarks the users has
     bookmarks = []
 
+
+    def goto_to(widget):
+      text = address_bar.get_text()
+      if text.startswith("http://"):
+        www.open(text)
+      elif text.endswith(".com"):
+        www.open("http://" + text)
+      else:
+        www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+
+
     # Go to the URL
     def goto(widget):
       default_start_page = 'http://www.google.com'
@@ -60,8 +71,8 @@ class LeefMain(gtk.Window):
         if i == typed_ans:
           pos = session_url.find(i)
           print(session_url[pos - 1])
-          print("GOOOK")
-      
+    
+  
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
       bookmarked_url = address_bar.get_text()
@@ -100,7 +111,7 @@ class LeefMain(gtk.Window):
 
     # Address Bar
     address_bar = gtk.Entry()
-    address_bar.connect('activate', goto)
+    address_bar.connect('activate', goto_to)
     address_bar.set_tooltip_text("Enter the website URL")
     top_div.pack_start(address_bar)
 
@@ -116,7 +127,7 @@ class LeefMain(gtk.Window):
     search_bar.set_tooltip_text("Search the net")
     search_bar.set_size_request(width = 240, height = 33)
     search_bar.set_text("Search")
-    top_div.pack_start(search_bar, expand = False, fill = False)
+   # top_div.pack_start(search_bar, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
