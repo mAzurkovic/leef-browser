@@ -31,6 +31,13 @@ class LeefMain(gtk.Window):
         www.open(text)
       elif text.endswith(".com"):
         www.open("http://" + text)
+      # Use Duck Duck GO Search
+      elif text == "Duck Duck Go:":
+        ddg_from = text.find(":")
+        ddg_search = text[ddg_from:-1]
+        www.open("https://duckduckgo.com/?q=" + ddg_search)  
+
+      # Default search is GOOGLE
       else:
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
