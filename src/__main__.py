@@ -36,7 +36,11 @@ class LeefMain(gtk.Window):
         ddg_from = text.find(":")
         ddg_search = text[ddg_from:-1]
         www.open("https://duckduckgo.com/?q=" + ddg_search)  
-
+      # Use Bing - I know Bing lol
+      elif text.startswith("Bing:"):
+        bing_pos = text.find(":")
+        bing_search = text[bing_pos:-1]
+        www.open("https://www.bing.com/search?q=" + bing_search)  
       # Default search is GOOGLE
       else:
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
