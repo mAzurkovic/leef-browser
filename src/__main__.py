@@ -40,7 +40,12 @@ class LeefMain(gtk.Window):
       elif text.startswith("Bing:"):
         bing_pos = text.find(":")
         bing_search = text[bing_pos:-1]
-        www.open("https://www.bing.com/search?q=" + bing_search)  
+        www.open("https://www.bing.com/search?q=" + bing_search)
+      # Yahoo Quick Search
+      elif text.startswith("Yahoo:"):
+        yahoo_pos = text.find(":")
+        yahoo_search = text[yahoo_pos:-1]
+        www.open("https://search.yahoo.com/search;_ylt=AwrTHQhZ_gFWLnEAqNBXNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3NmcARncHJpZAM1Ljd6azNZVlJMLk5BbGd5cGR5OTJBBG5fcnNsdAMwBG5fc3VnZwMxMARvcmlnaW4Dc2VhcmNoLnlhaG9vLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAwRxc3RybAM0BHF1ZXJ5A3hheGEEdF9zdG1wAzE0NDI5NzEyMzM-?p=" + yahoo_search)  
       # Default search is GOOGLE
       else:
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
