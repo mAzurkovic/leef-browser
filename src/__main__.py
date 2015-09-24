@@ -178,7 +178,7 @@ class LeefMain(gtk.Window):
   
 
 window = LeefMain()
-window.set_title("Browser")
+window.set_title("Leef Browser")
 window.connect("delete-event", gtk.main_quit)
 window.show_all()
 gtk.main()
