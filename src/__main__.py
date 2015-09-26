@@ -55,6 +55,7 @@ class LeefMain(gtk.Window):
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
         #www.open("https://duckduckgo.com/?q=" + text)
 
+#TODO: REMOVE Reg goto
     # Go to the URL
     def goto(widget):
       default_start_page = 'http://www.google.com'
