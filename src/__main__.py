@@ -2,7 +2,7 @@
 #===================================#
 # Author: Mattias A. Zurkovic       #
 # ----------------------------------#
-# This is the main.py file for      #
+# This is the __main.py__ file for  #
 # the Leef browser.                 #
 #===================================#
 
