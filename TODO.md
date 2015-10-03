@@ -14,7 +14,7 @@ This file contains a list of what this need to be done for the project (improvme
 * Allow user to pick default search engine
 * Add visited site to an index (this will be used for history, prev. pages) :heavy_check_mark:
 * Add search bar to right of main URL address bar
-* Support video playing (Youtube, Vimeo, etc.)
+* Support video playing (Youtube, Vimeo, etc.) :heavy_check_mark:
 * New tab option
 * New window option :heavy_check_mark:
 * Favorite option
