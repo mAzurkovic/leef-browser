@@ -109,15 +109,28 @@ class LeefMain(gtk.Window):
       window.show_all()
       gtk.main()
 
+  
+    def title(view, frame, title):
+      self.set_title(title)
+
+    def link_check(view, frame):
+      new_uri =frame.get_uri()
+      address_bar.set_text(new_uri) 
+
 
     search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
+    search_engine_home = ["http://www.google.com", "http://www.duckduckgo.com"]
 
     # Below the window is defined
     www = webkit.WebView()
     scroll_bar = gtk.ScrolledWindow()
     scroll_bar.add(www)
 
+    # Default browser page - (When browser is launched it diplays this)
     www.open("http://www.google.com")
+
+    www.connect("title-changed", title)
+    www.connect("load-committed", link_check)
 
     container = gtk.VBox()
     self.add(container)
