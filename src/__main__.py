@@ -16,8 +16,8 @@ class LeefMain(gtk.Window):
 
   def __init__(self):
     gtk.Window.__init__(self)
-    self.set_border_width(5)
-    self.set_size_request(1368, 768)    
+   # self.set_border_width(5)
+    self.set_default_size(1368, 768)    
     
     # This array stores the URLs/Websites the user has gone in the currect Browser session
     session_url =[]    
@@ -116,6 +116,8 @@ class LeefMain(gtk.Window):
     www = webkit.WebView()
     scroll_bar = gtk.ScrolledWindow()
     scroll_bar.add(www)
+
+    www.open("http://www.google.com")
 
     container = gtk.VBox()
     self.add(container)
