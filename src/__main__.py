@@ -109,10 +109,12 @@ class LeefMain(gtk.Window):
       window.show_all()
       gtk.main()
 
-  
+ 
+    # Change title of browser - In top bar, states name of current site and index of that site 
     def title(view, frame, title):
       self.set_title(title)
 
+    # Changes the URI in the address bar to display the current site url the user is on
     def link_check(view, frame):
       new_uri =frame.get_uri()
       address_bar.set_text(new_uri) 
@@ -126,10 +128,12 @@ class LeefMain(gtk.Window):
     scroll_bar = gtk.ScrolledWindow()
     scroll_bar.add(www)
 
-    # Default browser page - (When browser is launched it diplays this)
+    # Default browser piage - (When browser is launched it diplays this)
     www.open("http://www.google.com")
 
+    # Set event for title change
     www.connect("title-changed", title)
+    # Event for link in addressbar to change
     www.connect("load-committed", link_check)
 
     container = gtk.VBox()
