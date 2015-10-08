@@ -9,11 +9,11 @@ This file contains a list of what this need to be done for the project (improvme
 * ** FIXED  ** BUG: When user types http://URL, does not go to site. :heavy_check_mark:
 * When user @ site and presses link, change url bar to display corresponding link :heavy_check_mark:
 * Add dropdown menu in address bar that displays lastest URLs
-* Create 'back' option (go to previous page)
+* Create 'back' option (go to previous page) :heavy_check_mark:
 * Bind <Return> (Enter) to goto() :heavy_check_mark:
 * Allow user to pick default search engine
 * Add visited site to an index (this will be used for history, prev. pages) :heavy_check_mark:
-* Add search bar to right of main URL address bar
+* Add search bar to right of main URL address bar :heavy_check_mark:
 * Support video playing (Youtube, Vimeo, etc.) :heavy_check_mark:
 * New tab option
 * New window option :heavy_check_mark:
