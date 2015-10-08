@@ -29,8 +29,14 @@ class LeefMain(gtk.Window):
       text = address_bar.get_text()
       if text.startswith("http://"):
         www.open(text)
+        session_url.append(text)
+        print(session_url)
+
       elif text.endswith(".com"):
         www.open("http://" + text)
+        session_url.append("http://" + text)
+        print(session_url)
+
       # Use Duck Duck GO Search
       elif text.startswith("Duck Duck Go:"):
         ddg_from = text.find(":")
