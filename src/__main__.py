@@ -94,12 +94,9 @@ class LeefMain(gtk.Window):
       print "Leef Browser: @BACK"
       # URL in Address Bar
       typed_ans = address_bar.get_text()
-      for i in session_url:
-        if i == typed_ans:
-          pos = session_url.find(i)
-          print(session_url[pos - 1])
-    
-  
+      www.open(session_url[-2])
+      session_url.pop()  
+
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
       bookmarked_url = address_bar.get_text()
@@ -122,7 +119,8 @@ class LeefMain(gtk.Window):
 
     # Changes the URI in the address bar to display the current site url the user is on
     def link_check(view, frame):
-      new_uri =frame.get_uri()
+      new_uri = frame.get_uri()
+      session_url.append(new_uri)
       address_bar.set_text(new_uri) 
 
 
@@ -197,7 +195,7 @@ class LeefMain(gtk.Window):
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
-    top_div.pack_start(fav_button, expand = False, fill = False)
+    # top_div.pack_start(fav_button, expand = False, fill = False)
     top_div.pack_start(new_window_button, fill = False, expand = False)
 
     container.pack_start(scroll_bar)
