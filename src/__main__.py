@@ -191,7 +191,10 @@ class LeefMain(gtk.Window):
     fav_button.connect('clicked', bookmark_page)
 
     # New window button
-    new_window_button = gtk.Button('+')
+    new_icon = gtk.Image()
+    new_icon.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON) 
+    new_window_button = gtk.Button()
+    new_window_button.add(new_icon)
     new_window_button.set_tooltip_text("New Leef window")
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
