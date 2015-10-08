@@ -29,13 +29,13 @@ class LeefMain(gtk.Window):
       text = address_bar.get_text()
       if text.startswith("http://"):
         www.open(text)
-        session_url.append(text)
-        print(session_url)
+       # session_url.append(text)
+       # print(session_url)
 
       elif text.endswith(".com"):
         www.open("http://" + text)
-        session_url.append("http://" + text)
-        print(session_url)
+       # session_url.append("http://" + text)
+       # print(session_url)
 
       # Use Duck Duck GO Search
       elif text.startswith("Duck Duck Go:"):
@@ -95,7 +95,8 @@ class LeefMain(gtk.Window):
       # URL in Address Bar
       typed_ans = address_bar.get_text()
       www.open(session_url[-2])
-      session_url.pop()  
+      #session_url.pop()
+      del session_url[-2:]
 
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
@@ -122,7 +123,7 @@ class LeefMain(gtk.Window):
       new_uri = frame.get_uri()
       session_url.append(new_uri)
       address_bar.set_text(new_uri) 
-
+      print(session_url)
 
     search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
     search_engine_home = ["http://www.google.com", "http://www.duckduckgo.com"]
