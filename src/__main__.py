@@ -16,9 +16,9 @@ class LeefMain(gtk.Window):
 
   def __init__(self):
     gtk.Window.__init__(self)
-   # self.set_border_width(5)
     self.set_default_size(1368, 768)    
-    
+    self.set_border_width(2)  
+  
     # This array stores the URLs/Websites the user has gone in the currect Browser session
     session_url =[]    
     # Stores all the bookmarks the users has
@@ -158,6 +158,16 @@ class LeefMain(gtk.Window):
     back_button.connect("clicked", goto_back)
     top_div.pack_start(back_button, expand  = False)
 
+    # Refresh button
+    refresh_icon = gtk.Image()
+    refresh_icon.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
+    refresh_button = gtk.Button()
+    refresh_button.add(refresh_icon)
+    refresh_button.connect("clicked", goto_to)
+    refresh_button.set_size_request(width = 40, height = 30)
+    top_div.pack_start(refresh_button, fill = False, expand = False)
+
+
     # Address Bar
     address_bar = gtk.Entry()
     address_bar.connect('activate', goto_to)
@@ -194,16 +204,7 @@ class LeefMain(gtk.Window):
     fav_button.set_tooltip_text("Bookmark page")
     fav_button.connect('clicked', bookmark_page)
 
-    # Refresh button
-    refresh_icon = gtk.Image()
-    refresh_icon.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
-    refresh_button = gtk.Button()
-    refresh_button.add(refresh_icon)
-    refresh_button.connect("clicked", goto_to)
-    top_div.pack_start(refresh_button, fill = False, expand = False)
-
     # New window button
-    # Sets new_icon to be an GTK Image object
     new_icon = gtk.Image()
     new_icon.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON) 
     new_window_button = gtk.Button()
@@ -214,10 +215,31 @@ class LeefMain(gtk.Window):
     new_window_button.connect('clicked', new_window)
     top_div.pack_start(new_window_button, fill = False, expand = False)
   
+    
     def settings_window(widget):
       print("Leef Browser: @SETTINGS WINDOW")
- 
-   
+      settings_win = gtk.Window()
+      settings_win.set_title("Settings")
+      settings_win.connect("delete-event", gtk.main_quit)
+      settings_win.set_border_width(10)
+
+      vbox = gtk.VBox(spacing=6)
+
+      engine_hbox = gtk.HBox()
+    
+      settings_win.add(vbox) 
+      vbox.pack_start(engine_hbox, False)
+
+      pick_engine = gtk.Label("Choose default search engine: ")
+      engine_hbox.pack_start(pick_engine)
+     
+      google_button = gtk.Button("Google")
+      engine_hbox.pack_start(google_button, fill = False, expand = False) 
+
+      settings_win.show_all()
+      gtk.main()
+      
+
 
     # Settings button
     settings_icon = gtk.Image()
@@ -230,6 +252,7 @@ class LeefMain(gtk.Window):
 
     # Include scroll BAR
     container.pack_start(scroll_bar)
+
   
 
 window = LeefMain()
