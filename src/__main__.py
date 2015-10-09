@@ -125,6 +125,7 @@ class LeefMain(gtk.Window):
       address_bar.set_text(new_uri) 
       print(session_url)
 
+
     search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
     search_engine_home = ["http://www.google.com", "http://www.duckduckgo.com"]
 
@@ -193,6 +194,14 @@ class LeefMain(gtk.Window):
     fav_button.set_tooltip_text("Bookmark page")
     fav_button.connect('clicked', bookmark_page)
 
+    # Refresh button
+    refresh_icon = gtk.Image()
+    refresh_icon.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
+    refresh_button = gtk.Button()
+    refresh_button.add(refresh_icon)
+    refresh_button.connect("clicked", goto_to)
+    top_div.pack_start(refresh_button, fill = False, expand = False)
+
     # New window button
     # Sets new_icon to be an GTK Image object
     new_icon = gtk.Image()
@@ -203,52 +212,23 @@ class LeefMain(gtk.Window):
     new_window_button.set_tooltip_text("New Leef window")
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
+    top_div.pack_start(new_window_button, fill = False, expand = False)
+  
+    def settings_window(widget):
+      print("Leef Browser: @SETTINGS WINDOW")
+ 
+   
 
     # Settings button
     settings_icon = gtk.Image()
     settings_icon.set_from_stock(gtk.STOCK_EXECUTE, gtk.ICON_SIZE_BUTTON)
-   
- 
-    # top_div.pack_start(fav_button, expand = False, fill = False)
-    top_div.pack_start(new_window_button, fill = False, expand = False)
+    settings_button = gtk.Button()
+    settings_button.add(settings_icon)
+    settings_button.connect("clicked", settings_window)
+    settings_button.set_size_request(width = 40, height = 30)
+    top_div.pack_start(settings_button, fill = False, expand = False)
 
-    # Menu bar - TOP of GUI
-    UI_INFO = """
-	<ui>
-  	<menubar name='MenuBar'>
-    	<menu action='FileMenu'>
-      	<menu action='FileNew'>
-        	<menuitem action='FileNewStandard' />
-        	<menuitem action='FileNewFoo' />
-        	<menuitem action='FileNewGoo' />
-      	</menu>
-      	<separator />
-      	<menuitem action='FileQuit' />
-   	</menu>
-    	<menu action='EditMenu'>
-      	<menuitem action='EditCopy' />
-      	<menuitem action='EditPaste' />
-      	<menuitem action='EditSomething' />
-    	</menu>
-    	<menu action='ChoicesMenu'>
-  	<menuitem action='ChoiceOne'/>
-      	<menuitem action='ChoiceTwo'/>
-      	<separator />
-      	<menuitem action='ChoiceThree'/>
-  	</menu>
- 	</menubar>
-  	<toolbar name='ToolBar'>
-	    <toolitem action='FileNewStandard' />
-	    <toolitem action='FileQuit' />
-	  </toolbar>
-	  <popup name='PopupMenu'>
-	    <menuitem action='EditCopy' />
-	    <menuitem action='EditPaste' />
-	    <menuitem action='EditSomething' />
-	  </popup>
-	</ui>
-	"""
-
+    # Include scroll BAR
     container.pack_start(scroll_bar)
   
 
