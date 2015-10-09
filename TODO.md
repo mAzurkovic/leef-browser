@@ -18,6 +18,7 @@ This file contains a list of what this need to be done for the project (improvme
 * New tab option
 * New window option :heavy_check_mark:
 * Favorite option
+* Refresh option :heavy_check_mark:
 * Instpect page (will be using urllib2 for this feature)
 * For now that is all...
 
