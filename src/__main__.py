@@ -236,6 +236,13 @@ class LeefMain(gtk.Window):
       google_button = gtk.Button("Google")
       engine_hbox.pack_start(google_button, fill = False, expand = False) 
 
+      ddg_button = gtk.Button("Duck Duck Go")
+      engine_hbox.pack_start(ddg_button, fill = False, expand = False)
+
+      bing_button = gtk.Button("Bing")
+      engine_hbox.pack_start(bing_button, fill = False, expand = False)
+
+
       settings_win.show_all()
       gtk.main()
       
