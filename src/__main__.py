@@ -148,7 +148,10 @@ class LeefMain(gtk.Window):
     container.pack_start(top_div, False)
     
     # Back and forward buttons
-    back_button = gtk.Button("<")
+    back_icon = gtk.Image()
+    back_icon.set_from_stock(gtk.STOCK_GO_BACK, gtk.ICON_SIZE_BUTTON)
+    back_button = gtk.Button()
+    back_button.add(back_icon)
     back_button.set_tooltip_text("Previous page")
     back_button.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", goto_back)
@@ -191,16 +194,60 @@ class LeefMain(gtk.Window):
     fav_button.connect('clicked', bookmark_page)
 
     # New window button
+    # Sets new_icon to be an GTK Image object
     new_icon = gtk.Image()
     new_icon.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON) 
     new_window_button = gtk.Button()
+    # Implement the image object to the button
     new_window_button.add(new_icon)
     new_window_button.set_tooltip_text("New Leef window")
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
 
+    # Settings button
+    settings_icon = gtk.Image()
+    settings_icon.set_from_stock(gtk.STOCK_EXECUTE, gtk.ICON_SIZE_BUTTON)
+   
+ 
     # top_div.pack_start(fav_button, expand = False, fill = False)
     top_div.pack_start(new_window_button, fill = False, expand = False)
+
+    # Menu bar - TOP of GUI
+    UI_INFO = """
+	<ui>
+  	<menubar name='MenuBar'>
+    	<menu action='FileMenu'>
+      	<menu action='FileNew'>
+        	<menuitem action='FileNewStandard' />
+        	<menuitem action='FileNewFoo' />
+        	<menuitem action='FileNewGoo' />
+      	</menu>
+      	<separator />
+      	<menuitem action='FileQuit' />
+   	</menu>
+    	<menu action='EditMenu'>
+      	<menuitem action='EditCopy' />
+      	<menuitem action='EditPaste' />
+      	<menuitem action='EditSomething' />
+    	</menu>
+    	<menu action='ChoicesMenu'>
+  	<menuitem action='ChoiceOne'/>
+      	<menuitem action='ChoiceTwo'/>
+      	<separator />
+      	<menuitem action='ChoiceThree'/>
+  	</menu>
+ 	</menubar>
+  	<toolbar name='ToolBar'>
+	    <toolitem action='FileNewStandard' />
+	    <toolitem action='FileQuit' />
+	  </toolbar>
+	  <popup name='PopupMenu'>
+	    <menuitem action='EditCopy' />
+	    <menuitem action='EditPaste' />
+	    <menuitem action='EditSomething' />
+	  </popup>
+	</ui>
+	"""
 
     container.pack_start(scroll_bar)
   
