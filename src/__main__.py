@@ -23,6 +23,7 @@ class LeefMain(gtk.Window):
     session_url =[]    
     # Stores all the bookmarks the users has
     bookmarks = []
+    # Variable for search engines
 
 
     def goto_to(widget):
@@ -59,7 +60,6 @@ class LeefMain(gtk.Window):
       # Default search is GOOGLE
       else:
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
-        #www.open("https://duckduckgo.com/?q=" + text)
 
 #TODO: REMOVE Reg goto
     # Go to the URL
@@ -128,7 +128,8 @@ class LeefMain(gtk.Window):
 
     search_engine_names = ["Google", "Duck Duck Go", "Yahoo", "Bing"]
     search_engine_home = ["http://www.google.com", "http://www.duckduckgo.com"]
-
+    engine_url = ["https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=", "https://duckduckgo.com/?q="]  
+ 
     # Below the window is defined
     www = webkit.WebView()
     scroll_bar = gtk.ScrolledWindow()
@@ -215,6 +216,10 @@ class LeefMain(gtk.Window):
     new_window_button.connect('clicked', new_window)
     top_div.pack_start(new_window_button, fill = False, expand = False)
   
+    def change_to_ddg(widget):
+      print("Change to DDG")
+      engine = "Duck Duck Go"
+      
     
     def settings_window(widget):
       print("Leef Browser: @SETTINGS WINDOW")
@@ -234,9 +239,11 @@ class LeefMain(gtk.Window):
       engine_hbox.pack_start(pick_engine)
      
       google_button = gtk.Button("Google")
+
       engine_hbox.pack_start(google_button, fill = False, expand = False) 
 
       ddg_button = gtk.Button("Duck Duck Go")
+      ddg_button.connect("clicked", change_to_ddg)
       engine_hbox.pack_start(ddg_button, fill = False, expand = False)
 
       bing_button = gtk.Button("Bing")
