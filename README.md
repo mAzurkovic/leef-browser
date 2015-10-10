@@ -1,6 +1,8 @@
 Leef Web Browser Development 0.0.x
 ==================================
 
+![alt text](http://mazurkovic.github.io/leef-browser/leef_logo.png, "LOGO")
+
 About
 -----
 Welcome to the primary code that is behind the Leef Web Browser!
