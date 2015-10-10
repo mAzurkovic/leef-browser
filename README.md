@@ -2,7 +2,7 @@ Leef Web Browser Development 0.0.x
 ==================================
 
 LOGO:
-![alt text](http://mazurkovic.github.io/leef-browser/leef_logo.png, "LOGO")
+[logo]: http://mazurkovic.github.io/leef-browser/leef_logo.png, "LOGO"
 
 About
 -----
