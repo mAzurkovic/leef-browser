@@ -25,6 +25,8 @@ class LeefMain(gtk.Window):
     session_url =[]    
     # Stores all the bookmarks the users has
     bookmarks = []
+    #
+    default_engine = "Google"
 
     # CONFIGs
     config = ConfigParser.ConfigParser()
@@ -32,6 +34,11 @@ class LeefMain(gtk.Window):
     # Open a WRITABLE config.ini file
     file = open("config.ini", "w")
     parser = SafeConfigParser()
+
+    config.add_section("DEFAULT_ENGINE")
+    config.set("DEFAULT_ENGINE", "Engine Name", "Google")
+    with open("config.ini", "wb") as config_file:
+        config.write(config_file)
 
 
     def goto_to(widget):
@@ -65,17 +72,32 @@ class LeefMain(gtk.Window):
         google_pos = text.find(":")
         google_search = text[google_pos:-1]
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + google_search)
-      # Default search is GOOGLE
+      
+      # Check config.ini file and see what user set as default SEARCH ENGINE
       else:
+        
         name = config.get("DEFAULT_ENGINE", "Engine Name")
-        if name == "Duck Duck Go":
-          www.open("https://duckduckgo.com/?q=" + text)
-        elif name == "Bing":
-          www.open("https://www.bing.com/search?q=" + text)
-        elif name == "Google":
+  
+        try:     
+          if name == "Duck Duck Go":
+            www.open("https://duckduckgo.com/?q=" + text)
+          elif name == "Bing":
+            www.open("https://www.bing.com/search?q=" + text)
+          elif name == "Google":
+            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+          else:
+            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+        except NoSectionError:
+	  config.add_section("DEFAULT_ENGINE")
+          config.set("DEFAULT_ENGINE", "Engine Name", "Google")
+      #new_engine = config.get("DEFAULT_ENGINE", "Engine Name")
+      #print new_engine
+      # write changes back to the config file
+          with open("config.ini", "wb") as config_file:
+      	    config.write(config_file)
+
           www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
-        else:
-          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+
 
 #TODO: REMOVE Reg goto
     # Go to the URL
@@ -247,11 +269,15 @@ class LeefMain(gtk.Window):
 
     # Change default engine to DUCK DUCK GO 
     def change_to_ddg(widget):
-      print("Change to DDG")
+      print("Leef Browser: @CHANGE DEFAULT ENGINE TO DDG")
+      config.remove_section("DEFAULT_ENGINE")
       config.add_section("DEFAULT_ENGINE")
-      #config.remove_option("DEFAULT_ENGINE", "Engine Name")
       config.set("DEFAULT_ENGINE", "Engine Name", "Duck Duck Go")
-      config.write(file)
+      with open("config.ini", "wb") as config_file:
+        config.write(config_file)
+
+
+
  
     # Change default engine to BING  
     def change_to_bing(widget):
@@ -319,3 +345,4 @@ window.set_title("Leef Browser")
 window.connect("delete-event", gtk.main_quit)
 window.show_all()
 gtk.main()
+
