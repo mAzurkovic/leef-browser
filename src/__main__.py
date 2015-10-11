@@ -10,6 +10,7 @@ import sys
 from Tkinter import *
 import webkit, gtk
 import ConfigParser
+from ConfigParser import SafeConfigParser
 
 #===================================#
 
@@ -24,21 +25,14 @@ class LeefMain(gtk.Window):
     session_url =[]    
     # Stores all the bookmarks the users has
     bookmarks = []
-    # Variable for search engines
-    google = True
-    ddg = False
-    bing = False
 
+    # CONFIGs
     config = ConfigParser.ConfigParser()
-    
+
     # Open a WRITABLE config.ini file
     file = open("config.ini", "w")
+    parser = SafeConfigParser()
 
-    config.add_section("Default Engine")
-    config.set("Default Engine", "Engine Name", "Google")
-
-    config.write(file)
-    
 
     def goto_to(widget):
       text = address_bar.get_text()
@@ -229,12 +223,40 @@ class LeefMain(gtk.Window):
     new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.connect('clicked', new_window)
     top_div.pack_start(new_window_button, fill = False, expand = False)
-  
+
+
+    # Change default engine to GOOGLE
+    def change_to_google(widget):
+      print("Leef Browser: @ CHANGE DEFAULT ENGINE TO GOOGLE")
+      config.add_section("DEFAULT_ENGINE")
+      config.set("DEFAULT_ENGINE", "Engine Name", "Google")
+      #new_engine = config.get("DEFAULT_ENGINE", "Engine Name")
+      #print new_engine
+      # write changes back to the config file
+      with open("config.ini", "wb") as config_file:
+        config.write(config_file)
+
+
+    # Change default engine to DUCK DUCK GO 
     def change_to_ddg(widget):
       print("Change to DDG")
-      engine = "Duck Duck Go"
+      config.add_section("DEFAULT_ENGINE")
+      #config.remove_option("DEFAULT_ENGINE", "Engine Name")
+      config.set("DEFAULT_ENGINE", "Engine Name", "Duck Duck Go")
+      config.write(file)
+ 
+    # Change default engine to BING  
+    def change_to_bing(widget):
+      print("Leef Browser: @CHANGE DEFAULT ENGINE TO BING")
       
-    
+      config.add_section("DEFAULT_ENGINE")
+      config.set("DEFAULT_ENGINE", "Engine Name", "Bing")
+      #new_engine = config.get("DEFAULT_ENGINE", "Engine Name")
+      #print new_engine
+      # write changes back to the config file
+      with open("config.ini", "wb") as config_file:
+        config.write(config_file)
+ 
     def settings_window(widget):
       print("Leef Browser: @SETTINGS WINDOW")
       settings_win = gtk.Window()
@@ -253,7 +275,7 @@ class LeefMain(gtk.Window):
       engine_hbox.pack_start(pick_engine)
      
       google_button = gtk.Button("Google")
-
+      google_button.connect("clicked", change_to_google)
       engine_hbox.pack_start(google_button, fill = False, expand = False) 
 
       ddg_button = gtk.Button("Duck Duck Go")
@@ -261,6 +283,7 @@ class LeefMain(gtk.Window):
       engine_hbox.pack_start(ddg_button, fill = False, expand = False)
 
       bing_button = gtk.Button("Bing")
+      bing_button.connect("clicked", change_to_bing)
       engine_hbox.pack_start(bing_button, fill = False, expand = False)
 
 
