@@ -11,7 +11,7 @@ This file contains a list of what this need to be done for the project (improvme
 * Add dropdown menu in address bar that displays lastest URLs
 * Create 'back' option (go to previous page) :heavy_check_mark:
 * Bind <Return> (Enter) to goto() :heavy_check_mark:
-* Allow user to pick default search engine
+* Allow user to pick default search engine :heavy_check_mark:
 * Add visited site to an index (this will be used for history, prev. pages) :heavy_check_mark:
 * Add search bar to right of main URL address bar :heavy_check_mark:
 * Support video playing (Youtube, Vimeo, etc.) :heavy_check_mark:
