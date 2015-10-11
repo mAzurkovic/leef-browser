@@ -9,6 +9,7 @@
 import sys
 from Tkinter import *
 import webkit, gtk
+import ConfigParser
 
 #===================================#
 
@@ -24,7 +25,20 @@ class LeefMain(gtk.Window):
     # Stores all the bookmarks the users has
     bookmarks = []
     # Variable for search engines
+    google = True
+    ddg = False
+    bing = False
 
+    config = ConfigParser.ConfigParser()
+    
+    # Open a WRITABLE config.ini file
+    file = open("config.ini", "w")
+
+    config.add_section("Default Engine")
+    config.set("Default Engine", "Engine Name", "Google")
+
+    config.write(file)
+    
 
     def goto_to(widget):
       text = address_bar.get_text()
