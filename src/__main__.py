@@ -67,9 +67,13 @@ class LeefMain(gtk.Window):
         www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + google_search)
       # Default search is GOOGLE
       else:
-
-        if config.get("DEFAULT_ENGINE", "Engine Name") == "Duck Duck Go":
+        name = config.get("DEFAULT_ENGINE", "Engine Name")
+        if name == "Duck Duck Go":
           www.open("https://duckduckgo.com/?q=" + text)
+        elif name == "Bing":
+          www.open("https://www.bing.com/search?q=" + text)
+        elif name == "Google":
+          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
         else:
           www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
