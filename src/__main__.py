@@ -35,7 +35,7 @@ class LeefMain(gtk.Window):
     file = open("config.ini", "w")
     parser = SafeConfigParser()
 
-   # config.add_section("DEFAULT_ENGINE")
+   # parser.add_section("DEFAULT_ENGINE")
    # config.add_section("BOOKMARKS")
    # config.set("DEFAULT_ENGINE", "Engine Name", "Google")
    # with open("config.ini", "wb") as config_file:
