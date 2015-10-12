@@ -239,9 +239,14 @@ class LeefMain(gtk.Window):
     #top_div.pack_start(divider, expand = False, fill = False)
  
     # Bookmark
-    fav_button = gtk.Button("Bookmark")
+    fav_icon = gtk.Image()
+    fav_icon.set_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_BUTTON)
+    fav_button = gtk.Button()
+    fav_button.add(fav_icon)
     fav_button.set_tooltip_text("Bookmark page")
+    fav_button.set_size_request(width = 40, height = 30)
     fav_button.connect('clicked', bookmark_page)
+    top_div.pack_start(fav_button, fill = False, expand = False)
 
     # New window button
     new_icon = gtk.Image()
@@ -328,12 +333,23 @@ class LeefMain(gtk.Window):
 
     # Settings button
     settings_icon = gtk.Image()
-    settings_icon.set_from_stock(gtk.STOCK_EXECUTE, gtk.ICON_SIZE_BUTTON)
+    settings_icon.set_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON)
     settings_button = gtk.Button()
     settings_button.add(settings_icon)
     settings_button.connect("clicked", settings_window)
     settings_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(settings_button, fill = False, expand = False)
+
+    # About button
+    about_icon = gtk.Image()
+    about_icon.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_BUTTON)
+    about_button = gtk.Button()
+    about_button.add(about_icon)
+    about_button.set_tooltip_text("About Leef")
+    about_button.set_size_request(width = 40, height = 30)
+    #about_button.connect("clicked", goto_back)
+    top_div.pack_start(about_button, expand  = False)
+
 
     # Include scroll BAR
     container.pack_start(scroll_bar)
