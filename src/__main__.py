@@ -35,10 +35,11 @@ class LeefMain(gtk.Window):
     file = open("config.ini", "w")
     parser = SafeConfigParser()
 
-    config.add_section("DEFAULT_ENGINE")
-    config.set("DEFAULT_ENGINE", "Engine Name", "Google")
-    with open("config.ini", "wb") as config_file:
-        config.write(config_file)
+   # config.add_section("DEFAULT_ENGINE")
+   # config.add_section("BOOKMARKS")
+   # config.set("DEFAULT_ENGINE", "Engine Name", "Google")
+   # with open("config.ini", "wb") as config_file:
+   #    config.write(config_file)
 
 
     def goto_to(widget):
@@ -76,10 +77,11 @@ class LeefMain(gtk.Window):
       # Check config.ini file and see what user set as default SEARCH ENGINE
       else:
         
-        name = config.get("DEFAULT_ENGINE", "Engine Name")
-  
-        try:     
-          if name == "Duck Duck Go":
+        if len(config.sections()) == 0:
+          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text) 
+        else:
+          name = config.get("DEFAULT_ENGINE", "Engine Name")
+	  if name == "Duck Duck Go":
             www.open("https://duckduckgo.com/?q=" + text)
           elif name == "Bing":
             www.open("https://www.bing.com/search?q=" + text)
@@ -87,16 +89,6 @@ class LeefMain(gtk.Window):
             www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
           else:
             www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
-        except NoSectionError:
-	  config.add_section("DEFAULT_ENGINE")
-          config.set("DEFAULT_ENGINE", "Engine Name", "Google")
-      #new_engine = config.get("DEFAULT_ENGINE", "Engine Name")
-      #print new_engine
-      # write changes back to the config file
-          with open("config.ini", "wb") as config_file:
-      	    config.write(config_file)
-
-          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
 
 #TODO: REMOVE Reg goto
@@ -138,11 +130,14 @@ class LeefMain(gtk.Window):
 
     def bookmark_page(widget):
       print("Leef Browser: @BOOKMARK")
-      bookmarked_url = address_bar.get_text()
-      print("Successfully bookmarked " + bookmarked_url)
-      bookmarks.append(bookmarked_url)
-      print(bookmarks)
+      ans = address_bar.get_text()
+      config.set("BOOKMARKS", "URL", ans)
+            
+      # write changes back to the config file
+      with open("config.ini", "wb") as config_file:
+        config.write(config_file)
       
+ 
 
     def new_window(widget):
       window = LeefMain()
