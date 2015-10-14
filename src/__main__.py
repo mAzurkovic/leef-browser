@@ -275,10 +275,15 @@ class LeefMain(gtk.Window):
     # Change default engine to GOOGLE
     def change_to_google(widget):
       print("Leef Browser: @ CHANGE DEFAULT ENGINE TO GOOGLE")
+
+      if config.has_section("DEFAULT_ENGINE"):
+        config.remove_section("DEFAULT_ENGINE")
+        print("Reset d.engine")
+        with open("config.ini", "wb") as config_file:
+          config.write(config_file)
+
       config.add_section("DEFAULT_ENGINE")
       config.set("DEFAULT_ENGINE", "Engine Name", "Google")
-      #new_engine = config.get("DEFAULT_ENGINE", "Engine Name")
-      #print new_engine
       # write changes back to the config file
       with open("config.ini", "wb") as config_file:
         config.write(config_file)
@@ -287,13 +292,18 @@ class LeefMain(gtk.Window):
     # Change default engine to DUCK DUCK GO 
     def change_to_ddg(widget):
       print("Leef Browser: @CHANGE DEFAULT ENGINE TO DDG")
+
+      if config.has_section("DEFAULT_ENGINE"):
+        config.remove_section("DEFAULT_ENGINE")
+        print("Reset d.engine")
+        with open("config.ini", "wb") as config_file:
+          config.write(config_file)
+
       config.remove_section("DEFAULT_ENGINE")
       config.add_section("DEFAULT_ENGINE")
       config.set("DEFAULT_ENGINE", "Engine Name", "Duck Duck Go")
       with open("config.ini", "wb") as config_file:
         config.write(config_file)
-
-
 
  
     # Change default engine to BING  
