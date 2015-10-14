@@ -33,14 +33,24 @@ class LeefMain(gtk.Window):
 
     # Open a WRITABLE config.ini file
     file = open("config.ini")
-    parser = SafeConfigParser()
 
    # parser.add_section("DEFAULT_ENGINE")
    # config.add_section("BOOKMARKS")
    # config.set("DEFAULT_ENGINE", "Engine Name", "Google")
    # with open("config.ini", "wb") as config_file:
    #    config.write(config_file)
-
+    
+    def default_engine():
+      config.readfp(open(r"config.ini"))
+      name = config.get("DEFAULT_ENGINE", "Engine Name")
+      if name == "Duck Duck Go":
+        www.open("https://duckduckgo.com/")
+      elif name == "Bing":
+        www.open("https://www.bing.com/search")
+      elif name == "Google":
+        www.open("https://www.google.com")
+      else:
+        www.open("https://www.google.com")
 
     def goto_to(widget):
       text = address_bar.get_text()
@@ -76,17 +86,21 @@ class LeefMain(gtk.Window):
       
       # Check config.ini file and see what user set as default SEARCH ENGINE
       else:
-  # if len(config.sections())  ==  0:      
+                      
         config.readfp(open(r"config.ini"))  
-        name = config.get("DEFAULT_ENGINE", "Engine Name")
-	if name == "Duck Duck Go":
-          www.open("https://duckduckgo.com/?q=" + text)
-        elif name == "Bing":
-          www.open("https://www.bing.com/search?q=" + text)
-        elif name == "Google":
-          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+        if len(config.sections()) == 0:
+          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text) 
         else:
-          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+          name = config.get("DEFAULT_ENGINE", "Engine Name")
+        
+	  if name == "Duck Duck Go":
+            www.open("https://duckduckgo.com/?q=" + text)
+          elif name == "Bing":
+            www.open("https://www.bing.com/search?q=" + text)
+          elif name == "Google":
+            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+          else:
+            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
 
 #TODO: REMOVE Reg goto
@@ -166,8 +180,9 @@ class LeefMain(gtk.Window):
     scroll_bar = gtk.ScrolledWindow()
     scroll_bar.add(www)
 
-    # Default browser piage - (When browser is launched it diplays this)
-    www.open("http://www.google.com")
+    # Default browser open page - (When browser is launched it diplays this)
+    default_engine() 
+    
 
     # Set event for title change
     www.connect("title-changed", title)
