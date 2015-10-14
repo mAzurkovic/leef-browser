@@ -32,7 +32,7 @@ class LeefMain(gtk.Window):
     config = ConfigParser.ConfigParser()
 
     # Open a WRITABLE config.ini file
-    file = open("config.ini", "w")
+    file = open("config.ini")
     parser = SafeConfigParser()
 
    # parser.add_section("DEFAULT_ENGINE")
@@ -76,19 +76,17 @@ class LeefMain(gtk.Window):
       
       # Check config.ini file and see what user set as default SEARCH ENGINE
       else:
-        
-        if len(config.sections()) == 0:
-          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text) 
+  # if len(config.sections())  ==  0:      
+        config.readfp(open(r"config.ini"))  
+        name = config.get("DEFAULT_ENGINE", "Engine Name")
+	if name == "Duck Duck Go":
+          www.open("https://duckduckgo.com/?q=" + text)
+        elif name == "Bing":
+          www.open("https://www.bing.com/search?q=" + text)
+        elif name == "Google":
+          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
         else:
-          name = config.get("DEFAULT_ENGINE", "Engine Name")
-	  if name == "Duck Duck Go":
-            www.open("https://duckduckgo.com/?q=" + text)
-          elif name == "Bing":
-            www.open("https://www.bing.com/search?q=" + text)
-          elif name == "Google":
-            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
-          else:
-            www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
+          www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
 
 #TODO: REMOVE Reg goto
