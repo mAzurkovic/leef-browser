@@ -199,7 +199,7 @@ class LeefMain(gtk.Window):
 
     top_div = gtk.HBox()
     container.pack_start(top_div, False)
-    
+   
     # Back and forward buttons
     back_icon = gtk.Image()
     back_icon.set_from_stock(gtk.STOCK_GO_BACK, gtk.ICON_SIZE_BUTTON)
@@ -217,8 +217,7 @@ class LeefMain(gtk.Window):
     refresh_button.add(refresh_icon)
     refresh_button.connect("clicked", goto_to)
     refresh_button.set_size_request(width = 40, height = 30)
-    top_div.pack_start(refresh_button, fill = False, expand = False)
-
+    top_div.pack_start(refresh_button, expand = False) 
 
     # Address Bar
     address_bar = gtk.Entry()
