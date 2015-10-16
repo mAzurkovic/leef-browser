@@ -137,6 +137,7 @@ class LeefMain(gtk.Window):
 
     # Function for going to prev. page
     def goto_back(widget):
+      #print new_engine
       print "Leef Browser: @BACK"
       # URL in Address Bar
       typed_ans = address_bar.get_text()
@@ -350,6 +351,26 @@ class LeefMain(gtk.Window):
       bing_button = gtk.Button("Bing")
       bing_button.connect("clicked", change_to_bing)
       engine_hbox.pack_start(bing_button, fill = False, expand = False)
+ 
+      new_icon = gtk.Image()
+      new_icon.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON)
+      new_window_button = gtk.Button()
+      # Implement the image object to the button
+      new_window_button.add(new_icon)
+      new_window_button.set_tooltip_text("New Leef window")
+      new_window_button.set_size_request(width = 40, height = 30)
+      new_window_button.connect('clicked', new_window)
+      vbox.pack_start(new_window_button, fill = False, expand = False)
+
+ 
+     # About button
+      about_icon = gtk.Image()
+      about_icon.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_BUTTON)
+      about_button = gtk.Button()
+      about_button.add(about_icon)
+      about_button.set_tooltip_text("About Leef")
+      #about_button.connect("clicked", goto_back)
+      vbox.pack_start(about_button, expand  = False)
 
 
       settings_win.show_all()
@@ -365,16 +386,6 @@ class LeefMain(gtk.Window):
     settings_button.connect("clicked", settings_window)
     settings_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(settings_button, fill = False, expand = False)
-
-    # About button
-    about_icon = gtk.Image()
-    about_icon.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_BUTTON)
-    about_button = gtk.Button()
-    about_button.add(about_icon)
-    about_button.set_tooltip_text("About Leef")
-    about_button.set_size_request(width = 40, height = 30)
-    #about_button.connect("clicked", goto_back)
-    top_div.pack_start(about_button, expand  = False)
 
 
     # Include scroll BAR
