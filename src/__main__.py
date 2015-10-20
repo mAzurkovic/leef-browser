@@ -195,7 +195,45 @@ class LeefMain(gtk.Window):
     www.connect("load-committed", link_check)
 
     container = gtk.VBox()
-    self.add(container)
+ 
+    nb = gtk.Notebook()
+    hbox = gtk.HBox(False, 0)
+    nb.insert_page(container)
+    self.add(nb)
+
+  # self.add(container)
+
+    # New tab
+    def new_tab(widget):
+        hbox = gtk.HBox(False, 0)
+
+        #get a stock close button image
+        close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        image_w, image_h = gtk.icon_size_lookup(gtk.ICON_SIZE_MENU)
+        
+        #make the close button
+        btn = gtk.Button()
+        btn.set_relief(gtk.RELIEF_NONE)
+        btn.set_focus_on_click(False)
+        btn.add(close_image)
+        hbox.pack_start(btn, False, False)
+        
+        #this reduces the size of the button
+        style = gtk.RcStyle()
+        style.xthickness = 0
+        style.ythickness = 0
+        btn.modify_style(style)
+
+        hbox.show_all()
+
+        #the tab will have a single widget: a label
+        widget = gtk.Label(title)
+        
+        #add the tab
+        nb.insert_page(container)
+        
+
+
 
     top_div = gtk.HBox()
     container.pack_start(top_div, False)
@@ -382,10 +420,10 @@ class LeefMain(gtk.Window):
     settings_icon.set_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON)
     settings_button = gtk.Button()
     settings_button.add(settings_icon)
+    settings_button.set_relief(gtk.RELIEF_NONE)
     settings_button.connect("clicked", settings_window)
     settings_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(settings_button, fill = False, expand = False)
-
 
     # Include scroll BAR
     container.pack_start(scroll_bar)
