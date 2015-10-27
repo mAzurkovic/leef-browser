@@ -20,7 +20,10 @@ class LeefMain(gtk.Window):
     gtk.Window.__init__(self)
     self.set_default_size(1368, 768)    
     self.set_border_width(2)  
-  
+    self.webview = webkit.WebView() 
+    self.show()
+
+ 
     # This array stores the URLs/Websites the user has gone in the currect Browser session
     session_url =[]    
     # Stores all the bookmarks the users has
@@ -197,41 +200,24 @@ class LeefMain(gtk.Window):
     container = gtk.VBox()
  
     nb = gtk.Notebook()
-    hbox = gtk.HBox(False, 0)
-    nb.insert_page(container)
+   # hbox = gtk.HBox(False, 0)
+   # nb.insert_page(container)
     self.add(nb)
+
+    for page in range(1, 4):
+      label1 = container 
+      label2 = gtk.Label()
+      label2.set_text("Page %s" % str(page))
+      nb.append_page(label1, label2)
+      nb.set_tab_reorderable(label1, True)
+      nb.set_scrollable(True)
+
 
   # self.add(container)
 
     # New tab
     def new_tab(widget):
-        hbox = gtk.HBox(False, 0)
-
-        #get a stock close button image
-        close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
-        image_w, image_h = gtk.icon_size_lookup(gtk.ICON_SIZE_MENU)
-        
-        #make the close button
-        btn = gtk.Button()
-        btn.set_relief(gtk.RELIEF_NONE)
-        btn.set_focus_on_click(False)
-        btn.add(close_image)
-        hbox.pack_start(btn, False, False)
-        
-        #this reduces the size of the button
-        style = gtk.RcStyle()
-        style.xthickness = 0
-        style.ythickness = 0
-        btn.modify_style(style)
-
-        hbox.show_all()
-
-        #the tab will have a single widget: a label
-        widget = gtk.Label(title)
-        
-        #add the tab
-        nb.insert_page(container)
-        
+       nb.append_page(widget, None) 
 
 
 
@@ -239,12 +225,20 @@ class LeefMain(gtk.Window):
     container.pack_start(top_div, False)
    
     # Back and forward buttons
+    b_cont = gtk.HBox()
+  
+    b_label = gtk.Label("Back")
+
     back_icon = gtk.Image()
     back_icon.set_from_stock(gtk.STOCK_GO_BACK, gtk.ICON_SIZE_BUTTON)
+    
+    b_cont.pack_start(back_icon, False)
+    b_cont.pack_start(b_label, False)
+
     back_button = gtk.Button()
-    back_button.add(back_icon)
+    back_button.add(b_cont)
     back_button.set_tooltip_text("Previous page")
-    back_button.set_size_request(width = 40, height = 30)
+    #back_button.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", goto_back)
     top_div.pack_start(back_button, expand  = False)
 
@@ -275,7 +269,7 @@ class LeefMain(gtk.Window):
     search_bar.set_tooltip_text("Search the net")
     search_bar.set_size_request(width = 240, height = 33)
     search_bar.set_text("Search")
-   # top_div.pack_start(search_bar, expand = False, fill = False)
+    # top_div.pack_start(search_bar, expand = False, fill = False)
 
     # Search button
     search_button = gtk.Button('Search')
@@ -306,7 +300,7 @@ class LeefMain(gtk.Window):
     new_window_button.add(new_icon)
     new_window_button.set_tooltip_text("New Leef window")
     new_window_button.set_size_request(width = 40, height = 30)
-    new_window_button.connect('clicked', new_window)
+    new_window_button.connect('clicked', new_tab)
     top_div.pack_start(new_window_button, fill = False, expand = False)
 
 
