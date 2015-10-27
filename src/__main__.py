@@ -238,9 +238,18 @@ class LeefMain(gtk.Window):
     back_button = gtk.Button()
     back_button.add(b_cont)
     back_button.set_tooltip_text("Previous page")
-    #back_button.set_size_request(width = 40, height = 30)
-    back_button.connect("clicked", goto_back)
+    #.set_size_request(width = 40, height = 30)
+    back_button.connect("clicked", lambda x: www.go_back())
     top_div.pack_start(back_button, expand  = False)
+
+    # N3xt Button / Forward
+    for_icon = gtk.Image()
+    for_icon.set_from_stock(gtk.STOCK_GO_FORWARD, gtk.ICON_SIZE_BUTTON)
+    for_button = gtk.Button()
+    for_button.add(for_icon)
+    for_button.set_size_request(width = 40, height = 30)
+    top_div.pack_start(for_button, expand = False)
+
 
     # Refresh button
     refresh_icon = gtk.Image()
@@ -400,7 +409,6 @@ class LeefMain(gtk.Window):
       about_button = gtk.Button()
       about_button.add(about_icon)
       about_button.set_tooltip_text("About Leef")
-      #about_button.connect("clicked", goto_back)
       vbox.pack_start(about_button, expand  = False)
 
 
