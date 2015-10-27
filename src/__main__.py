@@ -247,6 +247,7 @@ class LeefMain(gtk.Window):
     for_icon.set_from_stock(gtk.STOCK_GO_FORWARD, gtk.ICON_SIZE_BUTTON)
     for_button = gtk.Button()
     for_button.add(for_icon)
+    for_button.connect("clicked", lambda x: www.go_forward())
     for_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(for_button, expand = False)
 
@@ -256,7 +257,7 @@ class LeefMain(gtk.Window):
     refresh_icon.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
     refresh_button = gtk.Button()
     refresh_button.add(refresh_icon)
-    refresh_button.connect("clicked", goto_to)
+    refresh_button.connect("clicked",lambda x: www.reload())
     refresh_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(refresh_button, expand = False) 
 
