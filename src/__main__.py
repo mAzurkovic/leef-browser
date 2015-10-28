@@ -212,7 +212,7 @@ class LeefMain(gtk.Window):
     # Back and forward buttons
     b_cont = gtk.HBox()
   
-    b_label = gtk.Label("Back")
+    b_label = gtk.Label("")
 
     back_icon = gtk.Image()
     back_icon.set_from_stock(gtk.STOCK_GO_BACK, gtk.ICON_SIZE_BUTTON)
@@ -410,7 +410,7 @@ class LeefMain(gtk.Window):
 
     # Settings button
     settings_icon = gtk.Image()
-    settings_icon.set_from_stock(gtk.STOCK_PREFERENCES, gtk.ICON_SIZE_BUTTON)
+    settings_icon.set_from_stock(gtk.STOCK_PROPERTIES, gtk.ICON_SIZE_BUTTON)
     settings_button = gtk.Button()
     settings_button.add(settings_icon)
     settings_button.set_relief(gtk.RELIEF_NONE)
