@@ -58,7 +58,7 @@ class LeefMain(gtk.Window):
        # session_url.append(text)
        # print(session_url)
 
-      elif text.endswith(".com"):
+      elif text.endswith(".com") or text.endswith(".org") or text.endswith(".net") or text.endswith(".co"):
         www.open("http://" + text)
        # session_url.append("http://" + text)
        # print(session_url)
