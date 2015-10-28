@@ -2,12 +2,11 @@
 #===================================#
 # Author: Mattias A. Zurkovic       #
 # ----------------------------------#
-# This is the __main.py__ file for  #
+# This is the __main__.py file for  #
 # the Leef browser.                 #
 #===================================#
 
 import sys
-from Tkinter import *
 import webkit, gtk
 import ConfigParser
 from ConfigParser import SafeConfigParser
@@ -36,13 +35,6 @@ class LeefMain(gtk.Window):
 
     # Open a WRITABLE config.ini file
     file = open("config.ini")
-
-   # parser.add_section("DEFAULT_ENGINE")
-   # config.add_section("BOOKMARKS")
-   # config.set("DEFAULT_ENGINE", "Engine Name", "Google")
-   # config.remove_section("BOOKMARKS")
-   # with open("config.ini", "wb") as config_file:
-   #    config.write(config_file)
     
     def default_engine():
       config.readfp(open(r"config.ini"))
@@ -157,7 +149,6 @@ class LeefMain(gtk.Window):
       with open("config.ini", "wb") as config_file:
         config.write(config_file)
       
- 
 
     def new_window(widget):
       window = LeefMain()
@@ -198,10 +189,9 @@ class LeefMain(gtk.Window):
     www.connect("load-committed", link_check)
 
     container = gtk.VBox()
- 
+
+    ''' 
     nb = gtk.Notebook()
-   # hbox = gtk.HBox(False, 0)
-   # nb.insert_page(container)
     self.add(nb)
 
     for page in range(1, 4):
@@ -211,14 +201,9 @@ class LeefMain(gtk.Window):
       nb.append_page(label1, label2)
       nb.set_tab_reorderable(label1, True)
       nb.set_scrollable(True)
+    '''
 
-
-  # self.add(container)
-
-    # New tab
-    def new_tab(widget):
-       nb.append_page(widget, None) 
-
+    self.add(container)
 
 
     top_div = gtk.HBox()
@@ -237,6 +222,7 @@ class LeefMain(gtk.Window):
 
     back_button = gtk.Button()
     back_button.add(b_cont)
+    back_button.set_relief(gtk.RELIEF_NONE)
     back_button.set_tooltip_text("Previous page")
     #.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", lambda x: www.go_back())
@@ -247,6 +233,7 @@ class LeefMain(gtk.Window):
     for_icon.set_from_stock(gtk.STOCK_GO_FORWARD, gtk.ICON_SIZE_BUTTON)
     for_button = gtk.Button()
     for_button.add(for_icon)
+    for_button.set_relief(gtk.RELIEF_NONE)
     for_button.connect("clicked", lambda x: www.go_forward())
     for_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(for_button, expand = False)
@@ -257,8 +244,9 @@ class LeefMain(gtk.Window):
     refresh_icon.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
     refresh_button = gtk.Button()
     refresh_button.add(refresh_icon)
+    refresh_button.set_relief(gtk.RELIEF_NONE)
     refresh_button.connect("clicked",lambda x: www.reload())
-    refresh_button.set_size_request(width = 40, height = 30)
+   # refresh_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(refresh_button, expand = False) 
 
     # Address Bar
@@ -298,8 +286,9 @@ class LeefMain(gtk.Window):
     fav_button = gtk.Button()
     fav_button.add(fav_icon)
     fav_button.set_tooltip_text("Bookmark page")
-    fav_button.set_size_request(width = 40, height = 30)
+   # fav_button.set_size_request(width = 40, height = 30)
     fav_button.connect('clicked', bookmark_page)
+    fav_button.set_relief(gtk.RELIEF_NONE)
     top_div.pack_start(fav_button, fill = False, expand = False)
 
     # New window button
@@ -309,8 +298,9 @@ class LeefMain(gtk.Window):
     # Implement the image object to the button
     new_window_button.add(new_icon)
     new_window_button.set_tooltip_text("New Leef window")
-    new_window_button.set_size_request(width = 40, height = 30)
-    new_window_button.connect('clicked', new_tab)
+   # new_window_button.set_size_request(width = 40, height = 30)
+    new_window_button.set_relief(gtk.RELIEF_NONE)
+    new_window_button.connect('clicked', new_window)
     top_div.pack_start(new_window_button, fill = False, expand = False)
 
 
@@ -404,7 +394,7 @@ class LeefMain(gtk.Window):
       vbox.pack_start(new_window_button, fill = False, expand = False)
 
  
-     # About button
+      # About button
       about_icon = gtk.Image()
       about_icon.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_BUTTON)
       about_button = gtk.Button()
@@ -425,7 +415,7 @@ class LeefMain(gtk.Window):
     settings_button.add(settings_icon)
     settings_button.set_relief(gtk.RELIEF_NONE)
     settings_button.connect("clicked", settings_window)
-    settings_button.set_size_request(width = 40, height = 30)
+   # settings_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(settings_button, fill = False, expand = False)
 
     # Include scroll BAR
