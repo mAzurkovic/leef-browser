@@ -102,26 +102,6 @@ class LeefMain(gtk.Window):
             www.open("https://www.google.ca/?gfe_rd=cr&ei=5NnpVfajF4qV8QfglLCQBg&gws_rd=ssl#q=" + text)
 
 
-#TODO: REMOVE Reg goto
-    # Go to the URL
-    def goto(widget):
-      default_start_page = 'http://www.google.com'
-      url_address = address_bar.get_text()
- 
-      # auto add 'http://' to start of URL
-      if url_address[0] != 'h':
-        if url_address[1:6] != 'ttp://':
-          # Add 'http://'
-          www.open('http://' + url_address)
-          session_url.append('http://' + url_address)
-          print(session_url)
-      
-      else:
-        www.open(url_address)
-        session_url.append(url_address) 
-        print(session_url)
-
-
     # Search capabilites - if user does not enter proper URL, just enters a string, then search Google
     def check_search(widget):
       # The string the user typed in ADDRESS BAR
@@ -190,19 +170,6 @@ class LeefMain(gtk.Window):
 
     container = gtk.VBox()
 
-    ''' 
-    nb = gtk.Notebook()
-    self.add(nb)
-
-    for page in range(1, 4):
-      label1 = container 
-      label2 = gtk.Label()
-      label2.set_text("Page %s" % str(page))
-      nb.append_page(label1, label2)
-      nb.set_tab_reorderable(label1, True)
-      nb.set_scrollable(True)
-    '''
-
     self.add(container)
 
 
@@ -212,19 +179,13 @@ class LeefMain(gtk.Window):
     # Back and forward buttons
     b_cont = gtk.HBox()
   
-    b_label = gtk.Label("")
-
     back_icon = gtk.Image()
     back_icon.set_from_stock(gtk.STOCK_GO_BACK, gtk.ICON_SIZE_BUTTON)
     
-    b_cont.pack_start(back_icon, False)
-    b_cont.pack_start(b_label, False)
-
     back_button = gtk.Button()
-    back_button.add(b_cont)
+    back_button.add(back_icon)
     back_button.set_relief(gtk.RELIEF_NONE)
     back_button.set_tooltip_text("Previous page")
-    #.set_size_request(width = 40, height = 30)
     back_button.connect("clicked", lambda x: www.go_back())
     top_div.pack_start(back_button, expand  = False)
 
@@ -235,7 +196,6 @@ class LeefMain(gtk.Window):
     for_button.add(for_icon)
     for_button.set_relief(gtk.RELIEF_NONE)
     for_button.connect("clicked", lambda x: www.go_forward())
-    for_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(for_button, expand = False)
 
 
@@ -246,7 +206,6 @@ class LeefMain(gtk.Window):
     refresh_button.add(refresh_icon)
     refresh_button.set_relief(gtk.RELIEF_NONE)
     refresh_button.connect("clicked",lambda x: www.reload())
-   # refresh_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(refresh_button, expand = False) 
 
     # Address Bar
@@ -254,43 +213,7 @@ class LeefMain(gtk.Window):
     address_bar.connect('activate', goto_to)
     address_bar.set_tooltip_text("Enter the website URL")
     top_div.pack_start(address_bar)
-
-    # Goto Button
-    goto_button = gtk.Button('Go!')
-    goto_button.set_tooltip_text("Go to site")
-    goto_button.connect('clicked', goto)
-    #top_div.pack_start(goto_button, expand = False, fill = False)
-
-    # Search Bar
-    search_bar = gtk.Entry()
-    search_bar.connect("activate", check_search)
-    search_bar.set_tooltip_text("Search the net")
-    search_bar.set_size_request(width = 240, height = 33)
-    search_bar.set_text("Search")
-    # top_div.pack_start(search_bar, expand = False, fill = False)
-
-    # Search button
-    search_button = gtk.Button('Search')
-    search_button.set_tooltip_text("Google search")
-    search_button.connect('clicked', check_search)
-    #top_div.pack_start(search_button, expand = False, fill = False)  
- 
-    # Divider
-    divider = gtk.Label()
-    divider.set_text(" | ")
-    #top_div.pack_start(divider, expand = False, fill = False)
- 
-    # Bookmark
-    fav_icon = gtk.Image()
-    fav_icon.set_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_BUTTON)
-    fav_button = gtk.Button()
-    fav_button.add(fav_icon)
-    fav_button.set_tooltip_text("Bookmark page")
-   # fav_button.set_size_request(width = 40, height = 30)
-    fav_button.connect('clicked', bookmark_page)
-    fav_button.set_relief(gtk.RELIEF_NONE)
-    top_div.pack_start(fav_button, fill = False, expand = False)
-
+    
     # New window button
     new_icon = gtk.Image()
     new_icon.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON) 
@@ -298,7 +221,6 @@ class LeefMain(gtk.Window):
     # Implement the image object to the button
     new_window_button.add(new_icon)
     new_window_button.set_tooltip_text("New Leef window")
-   # new_window_button.set_size_request(width = 40, height = 30)
     new_window_button.set_relief(gtk.RELIEF_NONE)
     new_window_button.connect('clicked', new_window)
     top_div.pack_start(new_window_button, fill = False, expand = False)
@@ -368,7 +290,7 @@ class LeefMain(gtk.Window):
       settings_win.add(vbox) 
       vbox.pack_start(engine_hbox, False)
 
-      pick_engine = gtk.Label("Choose default search engine: ")
+      pick_engine = gtk.Label("Default search engine: ")
       engine_hbox.pack_start(pick_engine)
      
       google_button = gtk.Button("Google")
@@ -415,7 +337,6 @@ class LeefMain(gtk.Window):
     settings_button.add(settings_icon)
     settings_button.set_relief(gtk.RELIEF_NONE)
     settings_button.connect("clicked", settings_window)
-   # settings_button.set_size_request(width = 40, height = 30)
     top_div.pack_start(settings_button, fill = False, expand = False)
 
     # Include scroll BAR
